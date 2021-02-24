@@ -115,22 +115,6 @@ class SchemaServiceClient(metaclass=SchemaServiceClientMeta):
     )
 
     @classmethod
-    def from_service_account_info(cls, info: dict, *args, **kwargs):
-        """Creates an instance of this client using the provided credentials info.
-
-        Args:
-            info (dict): The service account private key info.
-            args: Additional arguments to pass to the constructor.
-            kwargs: Additional arguments to pass to the constructor.
-
-        Returns:
-            SchemaServiceClient: The constructed client.
-        """
-        credentials = service_account.Credentials.from_service_account_info(info)
-        kwargs["credentials"] = credentials
-        return cls(*args, **kwargs)
-
-    @classmethod
     def from_service_account_file(cls, filename: str, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
         file.
@@ -142,7 +126,7 @@ class SchemaServiceClient(metaclass=SchemaServiceClientMeta):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            SchemaServiceClient: The constructed client.
+            {@api.name}: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(filename)
         kwargs["credentials"] = credentials
@@ -247,10 +231,10 @@ class SchemaServiceClient(metaclass=SchemaServiceClientMeta):
                 credentials identify the application to the service; if none
                 are specified, the client will attempt to ascertain the
                 credentials from the environment.
-            transport (Union[str, SchemaServiceTransport]): The
+            transport (Union[str, ~.SchemaServiceTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+            client_options (client_options_lib.ClientOptions): Custom options for the
                 client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
@@ -362,33 +346,30 @@ class SchemaServiceClient(metaclass=SchemaServiceClientMeta):
         r"""Creates a schema.
 
         Args:
-            request (google.pubsub_v1.types.CreateSchemaRequest):
+            request (:class:`~.gp_schema.CreateSchemaRequest`):
                 The request object. Request for the CreateSchema method.
-            parent (str):
+            parent (:class:`str`):
                 Required. The name of the project in which to create the
                 schema. Format is ``projects/{project-id}``.
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            schema (google.pubsub_v1.types.Schema):
+            schema (:class:`~.gp_schema.Schema`):
                 Required. The schema object to create.
 
                 This schema's ``name`` parameter is ignored. The schema
                 object returned by CreateSchema will have a ``name``
                 made using the given ``parent`` and ``schema_id``.
-
                 This corresponds to the ``schema`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            schema_id (str):
+            schema_id (:class:`str`):
                 The ID to use for the schema, which will become the
                 final component of the schema's resource name.
 
                 See
                 https://cloud.google.com/pubsub/docs/admin#resource_names
                 for resource name constraints.
-
                 This corresponds to the ``schema_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -400,7 +381,7 @@ class SchemaServiceClient(metaclass=SchemaServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.pubsub_v1.types.Schema:
+            ~.gp_schema.Schema:
                 A schema resource.
         """
         # Create or coerce a protobuf request object.
@@ -458,12 +439,11 @@ class SchemaServiceClient(metaclass=SchemaServiceClientMeta):
         r"""Gets a schema.
 
         Args:
-            request (google.pubsub_v1.types.GetSchemaRequest):
+            request (:class:`~.schema.GetSchemaRequest`):
                 The request object. Request for the GetSchema method.
-            name (str):
+            name (:class:`str`):
                 Required. The name of the schema to get. Format is
                 ``projects/{project}/schemas/{schema}``.
-
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -475,7 +455,7 @@ class SchemaServiceClient(metaclass=SchemaServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.pubsub_v1.types.Schema:
+            ~.schema.Schema:
                 A schema resource.
         """
         # Create or coerce a protobuf request object.
@@ -529,13 +509,12 @@ class SchemaServiceClient(metaclass=SchemaServiceClientMeta):
         r"""Lists schemas in a project.
 
         Args:
-            request (google.pubsub_v1.types.ListSchemasRequest):
+            request (:class:`~.schema.ListSchemasRequest`):
                 The request object. Request for the `ListSchemas`
                 method.
-            parent (str):
+            parent (:class:`str`):
                 Required. The name of the project in which to list
                 schemas. Format is ``projects/{project-id}``.
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -547,8 +526,8 @@ class SchemaServiceClient(metaclass=SchemaServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.pubsub_v1.services.schema_service.pagers.ListSchemasPager:
-                Response for the ListSchemas method.
+            ~.pagers.ListSchemasPager:
+                Response for the ``ListSchemas`` method.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -611,13 +590,12 @@ class SchemaServiceClient(metaclass=SchemaServiceClientMeta):
         r"""Deletes a schema.
 
         Args:
-            request (google.pubsub_v1.types.DeleteSchemaRequest):
+            request (:class:`~.schema.DeleteSchemaRequest`):
                 The request object. Request for the `DeleteSchema`
                 method.
-            name (str):
+            name (:class:`str`):
                 Required. Name of the schema to delete. Format is
                 ``projects/{project}/schemas/{schema}``.
-
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -679,20 +657,18 @@ class SchemaServiceClient(metaclass=SchemaServiceClientMeta):
         r"""Validates a schema.
 
         Args:
-            request (google.pubsub_v1.types.ValidateSchemaRequest):
+            request (:class:`~.gp_schema.ValidateSchemaRequest`):
                 The request object. Request for the `ValidateSchema`
                 method.
-            parent (str):
+            parent (:class:`str`):
                 Required. The name of the project in which to validate
                 schemas. Format is ``projects/{project-id}``.
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            schema (google.pubsub_v1.types.Schema):
+            schema (:class:`~.gp_schema.Schema`):
                 Required. The schema object to
                 validate.
-
                 This corresponds to the ``schema`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -704,8 +680,8 @@ class SchemaServiceClient(metaclass=SchemaServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.pubsub_v1.types.ValidateSchemaResponse:
-                Response for the ValidateSchema method.
+            ~.gp_schema.ValidateSchemaResponse:
+                Response for the ``ValidateSchema`` method.
         """
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
@@ -759,7 +735,7 @@ class SchemaServiceClient(metaclass=SchemaServiceClientMeta):
         r"""Validates a message against a schema.
 
         Args:
-            request (google.pubsub_v1.types.ValidateMessageRequest):
+            request (:class:`~.schema.ValidateMessageRequest`):
                 The request object. Request for the `ValidateMessage`
                 method.
 
@@ -770,8 +746,8 @@ class SchemaServiceClient(metaclass=SchemaServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.pubsub_v1.types.ValidateMessageResponse:
-                Response for the ValidateMessage method.
+            ~.schema.ValidateMessageResponse:
+                Response for the ``ValidateMessage`` method.
         """
         # Create or coerce a protobuf request object.
 

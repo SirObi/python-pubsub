@@ -125,23 +125,6 @@ class PublisherClient(metaclass=PublisherClientMeta):
     )
 
     @classmethod
-    def from_service_account_info(cls, info: dict, *args, **kwargs):
-        """Creates an instance of this client using the provided credentials info.
-
-
-        Args:
-            info (dict): The service account private key info.
-            args: Additional arguments to pass to the constructor.
-            kwargs: Additional arguments to pass to the constructor.
-
-        Returns:
-            PublisherClient: The constructed client.
-        """
-        credentials = service_account.Credentials.from_service_account_info(info)
-        kwargs["credentials"] = credentials
-        return cls(*args, **kwargs)
-
-    @classmethod
     def from_service_account_file(cls, filename: str, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
         file.
@@ -154,7 +137,7 @@ class PublisherClient(metaclass=PublisherClientMeta):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            PublisherClient: The constructed client.
+            {@api.name}: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(filename)
         kwargs["credentials"] = credentials
@@ -286,10 +269,10 @@ class PublisherClient(metaclass=PublisherClientMeta):
                 credentials identify the application to the service; if none
                 are specified, the client will attempt to ascertain the
                 credentials from the environment.
-            transport (Union[str, PublisherTransport]): The
+            transport (Union[str, ~.PublisherTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+            client_options (client_options_lib.ClientOptions): Custom options for the
                 client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
@@ -402,9 +385,9 @@ class PublisherClient(metaclass=PublisherClientMeta):
 
 
         Args:
-            request (google.pubsub_v1.types.Topic):
+            request (:class:`~.pubsub.Topic`):
                 The request object. A topic resource.
-            name (str):
+            name (:class:`str`):
                 Required. The name of the topic. It must have the format
                 ``"projects/{project}/topics/{topic}"``. ``{topic}``
                 must start with a letter, and contain only letters
@@ -413,7 +396,6 @@ class PublisherClient(metaclass=PublisherClientMeta):
                 plus (``+``) or percent signs (``%``). It must be
                 between 3 and 255 characters in length, and it must not
                 start with ``"goog"``.
-
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -425,7 +407,7 @@ class PublisherClient(metaclass=PublisherClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.pubsub_v1.types.Topic:
+            ~.pubsub.Topic:
                 A topic resource.
         """
         # Create or coerce a protobuf request object.
@@ -480,7 +462,7 @@ class PublisherClient(metaclass=PublisherClientMeta):
 
 
         Args:
-            request (google.pubsub_v1.types.UpdateTopicRequest):
+            request (:class:`~.pubsub.UpdateTopicRequest`):
                 The request object. Request for the UpdateTopic method.
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -490,7 +472,7 @@ class PublisherClient(metaclass=PublisherClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.pubsub_v1.types.Topic:
+            ~.pubsub.Topic:
                 A topic resource.
         """
         # Create or coerce a protobuf request object.
@@ -535,17 +517,16 @@ class PublisherClient(metaclass=PublisherClientMeta):
 
 
         Args:
-            request (google.pubsub_v1.types.PublishRequest):
+            request (:class:`~.pubsub.PublishRequest`):
                 The request object. Request for the Publish method.
-            topic (str):
+            topic (:class:`str`):
                 Required. The messages in the request will be published
                 on this topic. Format is
                 ``projects/{project}/topics/{topic}``.
-
                 This corresponds to the ``topic`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            messages (Sequence[google.pubsub_v1.types.PubsubMessage]):
+            messages (:class:`Sequence[~.pubsub.PubsubMessage]`):
                 Required. The messages to publish.
                 This corresponds to the ``messages`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -558,8 +539,8 @@ class PublisherClient(metaclass=PublisherClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.pubsub_v1.types.PublishResponse:
-                Response for the Publish method.
+            ~.pubsub.PublishResponse:
+                Response for the ``Publish`` method.
         """
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
@@ -616,12 +597,11 @@ class PublisherClient(metaclass=PublisherClientMeta):
 
 
         Args:
-            request (google.pubsub_v1.types.GetTopicRequest):
+            request (:class:`~.pubsub.GetTopicRequest`):
                 The request object. Request for the GetTopic method.
-            topic (str):
+            topic (:class:`str`):
                 Required. The name of the topic to get. Format is
                 ``projects/{project}/topics/{topic}``.
-
                 This corresponds to the ``topic`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -633,7 +613,7 @@ class PublisherClient(metaclass=PublisherClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.pubsub_v1.types.Topic:
+            ~.pubsub.Topic:
                 A topic resource.
         """
         # Create or coerce a protobuf request object.
@@ -688,12 +668,11 @@ class PublisherClient(metaclass=PublisherClientMeta):
 
 
         Args:
-            request (google.pubsub_v1.types.ListTopicsRequest):
+            request (:class:`~.pubsub.ListTopicsRequest`):
                 The request object. Request for the `ListTopics` method.
-            project (str):
+            project (:class:`str`):
                 Required. The name of the project in which to list
                 topics. Format is ``projects/{project-id}``.
-
                 This corresponds to the ``project`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -705,8 +684,8 @@ class PublisherClient(metaclass=PublisherClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.pubsub_v1.services.publisher.pagers.ListTopicsPager:
-                Response for the ListTopics method.
+            ~.pagers.ListTopicsPager:
+                Response for the ``ListTopics`` method.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -771,14 +750,13 @@ class PublisherClient(metaclass=PublisherClientMeta):
 
 
         Args:
-            request (google.pubsub_v1.types.ListTopicSubscriptionsRequest):
+            request (:class:`~.pubsub.ListTopicSubscriptionsRequest`):
                 The request object. Request for the
                 `ListTopicSubscriptions` method.
-            topic (str):
+            topic (:class:`str`):
                 Required. The name of the topic that subscriptions are
                 attached to. Format is
                 ``projects/{project}/topics/{topic}``.
-
                 This corresponds to the ``topic`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -790,8 +768,8 @@ class PublisherClient(metaclass=PublisherClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.pubsub_v1.services.publisher.pagers.ListTopicSubscriptionsPager:
-                Response for the ListTopicSubscriptions method.
+            ~.pagers.ListTopicSubscriptionsPager:
+                Response for the ``ListTopicSubscriptions`` method.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -860,14 +838,13 @@ class PublisherClient(metaclass=PublisherClientMeta):
 
 
         Args:
-            request (google.pubsub_v1.types.ListTopicSnapshotsRequest):
+            request (:class:`~.pubsub.ListTopicSnapshotsRequest`):
                 The request object. Request for the `ListTopicSnapshots`
                 method.
-            topic (str):
+            topic (:class:`str`):
                 Required. The name of the topic that snapshots are
                 attached to. Format is
                 ``projects/{project}/topics/{topic}``.
-
                 This corresponds to the ``topic`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -879,8 +856,8 @@ class PublisherClient(metaclass=PublisherClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.pubsub_v1.services.publisher.pagers.ListTopicSnapshotsPager:
-                Response for the ListTopicSnapshots method.
+            ~.pagers.ListTopicSnapshotsPager:
+                Response for the ``ListTopicSnapshots`` method.
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -949,13 +926,12 @@ class PublisherClient(metaclass=PublisherClientMeta):
 
 
         Args:
-            request (google.pubsub_v1.types.DeleteTopicRequest):
+            request (:class:`~.pubsub.DeleteTopicRequest`):
                 The request object. Request for the `DeleteTopic`
                 method.
-            topic (str):
+            topic (:class:`str`):
                 Required. Name of the topic to delete. Format is
                 ``projects/{project}/topics/{topic}``.
-
                 This corresponds to the ``topic`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1020,7 +996,7 @@ class PublisherClient(metaclass=PublisherClientMeta):
 
 
         Args:
-            request (google.pubsub_v1.types.DetachSubscriptionRequest):
+            request (:class:`~.pubsub.DetachSubscriptionRequest`):
                 The request object. Request for the DetachSubscription
                 method.
 
@@ -1031,7 +1007,7 @@ class PublisherClient(metaclass=PublisherClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.pubsub_v1.types.DetachSubscriptionResponse:
+            ~.pubsub.DetachSubscriptionResponse:
                 Response for the DetachSubscription
                 method. Reserved for future use.
 
